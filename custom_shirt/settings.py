@@ -195,7 +195,7 @@ STATIC_URL = '/static/'
 # 127.0.0.1:/media/ ---> for access to media file through a web server
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = '/vol/web/media'
-STATIC_ROOT = 'vol/web/static/'  # for static files like CSS JS HTML and ...
+MEDIA_ROOT = '/home/vol/web/media'
+STATIC_ROOT = '/home/vol/web/static/'  # for static files like CSS JS HTML and ...
 
 AUTH_USER_MODEL = 'core.User'

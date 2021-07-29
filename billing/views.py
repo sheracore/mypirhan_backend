@@ -1,13 +1,10 @@
+from billing import serializers
 from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from billing.serializers import (ShipperSerializer,
-                                 DesignAppendCategorySerializer,
-                                 DesignAppendSerializer)
-from billing.permissions import (DesignAppendCategoryPermissions,
-                                 DesignAppendPermissions)
-
-from core.models import Shipper, DesignAppendCategory, DesignAppend
+from billing import serializers   
+from billing import permissions
+from core import models
 
 
 class ShipperViewSet(viewsets.GenericViewSet,
@@ -15,8 +12,8 @@ class ShipperViewSet(viewsets.GenericViewSet,
                      mixins.CreateModelMixin):
     """Manage Shipper in the database"""
     permission_classes = (IsAuthenticated,)
-    queryset = Shipper.objects.all()
-    serializer_class = ShipperSerializer
+    queryset = models.Shipper.objects.all()
+    serializer_class = serializers.ShipperSerializer
 
     def get_queryset(self):
         return self.queryset.filter(
@@ -33,15 +30,24 @@ class DesignAppendCategoryViewSet(viewsets.GenericViewSet,
                                   mixins.ListModelMixin,
                                   mixins.CreateModelMixin):
     """Manage OrderItemAppendCategory in the database"""
-    permission_classes = (DesignAppendCategoryPermissions,)
-    queryset = DesignAppendCategory.objects.all()
-    serializer_class = DesignAppendCategorySerializer
+    permission_classes = (permissions.DesignAppendCategoryPermissions,)
+    queryset = models.DesignAppendCategory.objects.all()
+    serializer_class = serializers.DesignAppendCategorySerializer
 
 
 class DesignAppendViewSet(viewsets.GenericViewSet,
                           mixins.CreateModelMixin,
                           mixins.ListModelMixin):
     """Manage OrderItemAppend in the database"""
-    permission_classes = (DesignAppendPermissions,)
-    queryset = DesignAppend.objects.all()
-    serializer_class = DesignAppendSerializer
+    permission_classes = (permissions.DesignAppendPermissions,)
+    queryset = models.DesignAppend.objects.all()
+    serializer_class = serializers.DesignAppendSerializer
+
+
+class DesignUploadViewSet(viewsets.GenericViewSet,
+                          mixins.CreateModelMixin,
+                          mixins.ListModelMixin):
+    """Manage DesignUpload in the database"""
+    permission_classes = (permissions.DesignUploadPermissions,)
+    queryset = models.DesignUpload.objects.all()
+    serializer_class = serializers.DesignUploadSerializer

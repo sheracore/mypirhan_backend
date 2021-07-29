@@ -23,6 +23,12 @@ def design_append_image_file_path(instance, filename):
 
     return os.path.join('uploads/design_append/', filename)
 
+def design_upload_append_image_file_path(instance, filename):
+    """Generate file path for new product image"""
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+
+    return os.path.join('uploads/design_upload_append/', filename)
 
 def design_image_file_path(instance, filename):
     """Generate file path for new product image"""
@@ -232,7 +238,7 @@ class OrderItem(models.Model):
 
 
 class DesignAppend(models.Model):
-    """OrderItemAppend use in custmizing products in order item"""
+    """OrderItemAppend useed to customizing products in order item"""
     design_append_category = models.ForeignKey(
         DesignAppendCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
@@ -241,3 +247,7 @@ class DesignAppend(models.Model):
 
     def __str__(self):
         return self.name
+
+class DesignUpload(models.Model):
+    """DesignUpload used to uloading new design from user"""
+    image = models.ImageField(upload_to=design_upload_append_image_file_path)
