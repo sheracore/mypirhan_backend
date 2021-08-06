@@ -24,8 +24,8 @@ class UserSerializer(serializers.ModelSerializer):
         user = get_user_model().objects.create_user(
             email=validated_data['email'],
             password=validated_data['password'],
-            name=validated_data['name']
-        )
+            name=validated_data['name'],
+             )
         return user
 
     # purpose of overrid update is insure to using set_password to update password
@@ -57,7 +57,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         user = get_user_model().objects.create_user(
             email=validated_data['email'],
             password=validated_data['password'],
-            name=validated_data['name']
         )
 
         payload = JWT_PAYLOAD_HANDLER(user)
@@ -95,6 +94,7 @@ class AuthTokenSerializer(serializers.Serializer):
 
     # attrs equals is every fields that make up our serializers (email,password)
     def validate(self, attrs):
+        print("@@@@@@@@@@@@@@@@@@",attrs)
         """Validate and authenticate the user"""
         email = attrs.get('email')
         password = attrs.get('password')

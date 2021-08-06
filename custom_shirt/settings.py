@@ -30,13 +30,25 @@ DEBUG = True
 # ALLOWED_HOSTS = ["185.231.115.158", "127.0.0.1"]
 ALLOWED_HOSTS = []
 # CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+
 CORS_ALLOW_HEADERS = [
     'x-auth-token',
     'content-type',
+    'Authorization',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
 ]
 
 # Application definition
@@ -99,7 +111,7 @@ JWT_AUTH = {
 
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 
-    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    'JWT_AUTH_HEADER_PREFIX': 'token',
     'JWT_AUTH_COOKIE': None,
 
 }
@@ -109,6 +121,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

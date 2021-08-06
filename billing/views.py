@@ -1,6 +1,7 @@
 from billing import serializers
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins,status
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.response import Response
 
 from billing import serializers   
 from billing import permissions
@@ -28,7 +29,8 @@ class ShipperViewSet(viewsets.GenericViewSet,
 
 class DesignAppendCategoryViewSet(viewsets.GenericViewSet,
                                   mixins.ListModelMixin,
-                                  mixins.CreateModelMixin):
+                                  mixins.CreateModelMixin,
+                                  mixins.DestroyModelMixin):
     """Manage OrderItemAppendCategory in the database"""
     permission_classes = (permissions.DesignAppendCategoryPermissions,)
     queryset = models.DesignAppendCategory.objects.all()
@@ -37,7 +39,9 @@ class DesignAppendCategoryViewSet(viewsets.GenericViewSet,
 
 class DesignAppendViewSet(viewsets.GenericViewSet,
                           mixins.CreateModelMixin,
-                          mixins.ListModelMixin):
+                          mixins.ListModelMixin,
+                          mixins.RetrieveModelMixin,
+                          mixins.DestroyModelMixin):
     """Manage OrderItemAppend in the database"""
     permission_classes = (permissions.DesignAppendPermissions,)
     queryset = models.DesignAppend.objects.all()
@@ -46,7 +50,9 @@ class DesignAppendViewSet(viewsets.GenericViewSet,
 
 class DesignUploadViewSet(viewsets.GenericViewSet,
                           mixins.CreateModelMixin,
-                          mixins.ListModelMixin):
+                          mixins.ListModelMixin,
+                          mixins.RetrieveModelMixin,
+                          mixins.DestroyModelMixin):
     """Manage DesignUpload in the database"""
     permission_classes = (permissions.DesignUploadPermissions,)
     queryset = models.DesignUpload.objects.all()

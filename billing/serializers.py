@@ -24,12 +24,16 @@ class DesignAppendCategorySerializer(serializers.ModelSerializer):
 
 class DesignAppendSerializer(serializers.ModelSerializer):
     """Serializer for OrderItemAppend objects"""
-
     class Meta:
         model = models.DesignAppend
         fields = ('id', 'name', 'image', 'design_append_category',
                   'design_append_price_irr')
         read_only_fields = ('id',)
+
+    def to_representation(self, instance):
+        data = super(DesignAppendSerializer, self).to_representation(instance)
+        data['design_append_category'] = { "id": instance.design_append_category.id, "type_name" : instance.design_append_category.type_name } 
+        return data
 
 
 class DesignUploadSerializer(serializers.ModelSerializer):

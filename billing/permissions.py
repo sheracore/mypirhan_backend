@@ -28,6 +28,7 @@ class DesignAppendPermissions(BasePermission):
 
     def has_permission(self, request, view):
         if view.action in ['create', 'destroy', 'partial_update', 'update']:
+            # print("*********",request,request.user, request.user.is_authenticated, request.user.is_staff)
             return request.user and request.user.is_authenticated and request.user.is_staff
 
         elif view.action in ['retrieve', 'list']:
