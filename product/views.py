@@ -35,7 +35,8 @@ class SupplierViewSet(viewsets.GenericViewSet,
 
 class ProductViewSet(viewsets.GenericViewSet,
                      mixins.ListModelMixin,
-                     mixins.CreateModelMixin):
+                     mixins.CreateModelMixin,
+                     mixins.RetrieveModelMixin):
     """Manage Product in the database"""
     permission_classes = (ProductPermission,)
     queryset = Product.objects.all()

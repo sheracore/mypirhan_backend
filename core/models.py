@@ -86,10 +86,12 @@ class Supplier(models.Model):
        we ganna use best practice method to retrieving auth user model
        setting from django settings"""
     company_name = models.CharField(max_length=64)
+    address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=11)
     type_good = models.CharField(max_length=64)
     discount_type = models.CharField(max_length=64, null=True)
-    url = models.URLField(max_length=100, unique=True, null=True)
-    user = models.OneToOneField(
+    url = models.URLField(max_length=100)
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )

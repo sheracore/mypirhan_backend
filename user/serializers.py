@@ -94,7 +94,6 @@ class AuthTokenSerializer(serializers.Serializer):
 
     # attrs equals is every fields that make up our serializers (email,password)
     def validate(self, attrs):
-        print("@@@@@@@@@@@@@@@@@@",attrs)
         """Validate and authenticate the user"""
         email = attrs.get('email')
         password = attrs.get('password')
