@@ -81,7 +81,7 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=30000),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(weeks=24),
     'JWT_ALLOW_REFRESH': True,
     'JWT_ENCODE_HANDLER':
     'rest_framework_jwt.utils.jwt_encode_handler',
@@ -109,7 +109,7 @@ JWT_AUTH = {
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
 
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(weeks=24),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(weeks=30),
 
     'JWT_AUTH_HEADER_PREFIX': 'token',
     'JWT_AUTH_COOKIE': None,
