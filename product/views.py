@@ -15,17 +15,18 @@ from product.permissions import ProductPermission, CategoryPermission
 
 class SupplierViewSet(viewsets.GenericViewSet,
                       mixins.ListModelMixin,
-                      mixins.CreateModelMixin):
+                      mixins.CreateModelMixin,
+                      mixins.DestroyModelMixin):
     """Manage Supplier in the database"""
     permission_classes = (IsAuthenticated,)
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
 
-    def get_queryset(self):
-        """Return objects for the current authenticated user only"""
-        return self.queryset.filter(
-            user=self.request.user
-        ).order_by('-company_name')
+    # def get_queryset(self):
+    #     """Return objects for the current authenticated user only"""
+    #     return self.queryset.filter(
+    #         user=self.request.user
+    #     ).order_by('-company_name')
 
     def perform_create(self, serializer):
         """Create a new supplier"""
@@ -36,7 +37,8 @@ class SupplierViewSet(viewsets.GenericViewSet,
 class ProductViewSet(viewsets.GenericViewSet,
                      mixins.ListModelMixin,
                      mixins.CreateModelMixin,
-                     mixins.RetrieveModelMixin):
+                     mixins.RetrieveModelMixin,
+                     mixins.DestroyModelMixin):
     """Manage Product in the database"""
     permission_classes = (ProductPermission,)
     queryset = Product.objects.all()
@@ -45,7 +47,8 @@ class ProductViewSet(viewsets.GenericViewSet,
 
 class CategoryViewSet(viewsets.GenericViewSet,
                       mixins.ListModelMixin,
-                      mixins.CreateModelMixin):
+                      mixins.CreateModelMixin,
+                      mixins.DestroyModelMixin):
     """Manage Category in the database"""
     permission_classes = (CategoryPermission,)
     queryset = Category.objects.all()
@@ -54,7 +57,8 @@ class CategoryViewSet(viewsets.GenericViewSet,
 
 class CustomerViewSet(viewsets.GenericViewSet,
                       mixins.CreateModelMixin,
-                      mixins.ListModelMixin):
+                      mixins.ListModelMixin,
+                      mixins.DestroyModelMixin):
     """Manage customer in the database"""
     permission_classes = (IsAuthenticated,)
     queryset = Customer.objects.all()

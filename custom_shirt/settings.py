@@ -109,7 +109,7 @@ JWT_AUTH = {
     'JWT_AUDIENCE': None,
     'JWT_ISSUER': None,
 
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(weeks=24),
 
     'JWT_AUTH_HEADER_PREFIX': 'token',
     'JWT_AUTH_COOKIE': None,
@@ -209,6 +209,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = '/home/vol/web/media'
-STATIC_ROOT = '/home/vol/web/static/'  # for static files like CSS JS HTML and ...
+# for static files like CSS JS HTML and ...
+STATIC_ROOT = '/home/vol/web/static/'
 
 AUTH_USER_MODEL = 'core.User'
