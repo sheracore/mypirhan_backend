@@ -32,7 +32,8 @@ class DesignAppendSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super(DesignAppendSerializer, self).to_representation(instance)
-        data['design_append_category'] = { "id": instance.design_append_category.id, "type_name" : instance.design_append_category.type_name } 
+        data['design_append_category'] = {
+            "id": instance.design_append_category.id, "type_name": instance.design_append_category.type_name}
         return data
 
 

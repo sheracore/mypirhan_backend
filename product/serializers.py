@@ -19,6 +19,12 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('id',)
 
+    def to_representation(self, instance):
+        data = super(ProductSerializer, self).to_representation(instance)
+        data["category"] = {"id": instance.category.id,
+                            "category_type": instance.category.category_type}
+        return data
+
 
 class CategorySerializer(serializers.ModelSerializer):
     """Serializer for Categorys objects"""

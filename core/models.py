@@ -23,12 +23,14 @@ def design_append_image_file_path(instance, filename):
 
     return os.path.join('uploads/design_append/', filename)
 
+
 def design_upload_append_image_file_path(instance, filename):
     """Generate file path for new product image"""
     ext = filename.split('.')[-1]
     filename = f'{uuid.uuid4()}.{ext}'
 
     return os.path.join('uploads/design_upload_append/', filename)
+
 
 def design_image_file_path(instance, filename):
     """Generate file path for new product image"""
@@ -134,7 +136,7 @@ class Product(models.Model):
     image_back = models.ImageField(upload_to=product_image_file_path)
     image_side_left = models.ImageField(upload_to=product_image_file_path)
     image_side_right = models.ImageField(upload_to=product_image_file_path)
-    rainking = models.FloatField(null=True)
+    ranking = models.FloatField(null=True)
     note = models.CharField(max_length=512, null=True)
 
     def __str__(self):
@@ -249,6 +251,7 @@ class DesignAppend(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class DesignUpload(models.Model):
     """DesignUpload used to uloading new design from user"""
