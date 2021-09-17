@@ -10,6 +10,7 @@ router.register('suppliers', views.SupplierViewSet)
 router.register('products', views.ProductViewSet)
 router.register('categories', views.CategoryViewSet)
 router.register('customers', views.CustomerViewSet)
+router.register('productcolors', views.ProductColorViewSet)
 
 app_name = 'product'
 

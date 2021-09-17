@@ -3,12 +3,13 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from core.models import Supplier, Product, Category, Customer
+from core.models import Supplier, Product, Category, Customer, ProductColors
 
 from product.serializers import (SupplierSerializer,
                                  ProductSerializer,
                                  CategorySerializer,
-                                 CustomerSerializer)
+                                 CustomerSerializer,
+                                 ProductColorSerializer)
 
 from product.permissions import ProductPermission, CategoryPermission
 
@@ -43,6 +44,17 @@ class ProductViewSet(viewsets.GenericViewSet,
     permission_classes = (ProductPermission,)
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class ProductColorViewSet(viewsets.GenericViewSet,
+                          mixins.ListModelMixin,
+                          mixins.RetrieveModelMixin,
+                          mixins.DestroyModelMixin,
+                          mixins.CreateModelMixin):
+    """Manage ProductColor in the database"""
+    permission_classes = (ProductPermission,)
+    queryset = ProductColors.objects.all()
+    serializer_class = ProductColorSerializer
 
 
 class CategoryViewSet(viewsets.GenericViewSet,

@@ -79,7 +79,6 @@ class PrivateCustomerApiTests(TestCase):
             address1="تهران هفت تیر کوچه جار پلاک ۱۸ واحد ۱۲",
             phone="09187879251",
             age=20)
-
         res = self.client.get(CUSTOMER_URL)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)

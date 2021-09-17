@@ -32,6 +32,7 @@ class CustomUserAdmin(admin.ModelAdmin):
 admin.site.register(models.User, CustomUserAdmin)
 admin.site.register(models.Supplier)
 admin.site.register(models.Product)
+admin.site.register(models.ProductColors)
 admin.site.register(models.Category)
 admin.site.register(models.Shipper)
 admin.site.register(models.Customer)

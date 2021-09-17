@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models import Supplier, Product, Category, Customer
+from core.models import ProductColors, Supplier, Product, Category, Customer
 
 
 class SupplierSerializer(serializers.ModelSerializer):
@@ -24,6 +24,14 @@ class ProductSerializer(serializers.ModelSerializer):
         data["category"] = {"id": instance.category.id,
                             "category_type": instance.category.category_type}
         return data
+
+
+class ProductColorSerializer(serializers.ModelSerializer):
+    """Serializer for productColors objects"""
+    class Meta:
+        model = ProductColors
+        fields = "__all__"
+        read_only_fields = ('id',)
 
 
 class CategorySerializer(serializers.ModelSerializer):

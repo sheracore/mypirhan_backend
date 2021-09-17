@@ -15,6 +15,7 @@ from core.models import (
     product_image_file_path,
     OrderItem,
     Order,
+    ProductColors
 )
 
 
@@ -53,6 +54,30 @@ def sample_order():
         address2="None",
         phone="09187879251",
         age=26
+    )
+
+
+def sample_product():
+    """Create a sample product"""
+    return Product.objects.create(
+        supplier=sample_supplier(),
+        category=sample_category(),
+        product_brand="LCWikiki",
+        product_name="Jazb",
+        product_description="boland va shik va majlesi",
+        product_available=True,
+        discount_available=True,
+        price_irr=250000,
+        discount=15,
+        available_size=True,
+        available_colors=True,
+        size='Xlarg',
+        color='white',
+        weight_gram=0.2,
+        units_in_stock=200,
+        units_on_order_per_day=20,
+        ranking=4.5,
+        note="Its greate",
     )
 
 
@@ -154,11 +179,18 @@ class ModelTest(TestCase):
             weight_gram=0.2,
             units_in_stock=200,
             units_on_order_per_day=20,
-            rainking=4.5,
+            ranking=4.5,
             note="Its greate",
         )
-
         self.assertEqual(str(product), product.product_name)
+
+    def test_product_color_str(self):
+        """Test the product string representation"""
+        product_colors = ProductColors.objects.create(
+            product=sample_product(),
+            color="white"
+        )
+        self.assertEqual(str(product_colors), product_colors.color)
 
     def test_category_str(self):
         """Test the category string representation"""

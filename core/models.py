@@ -143,6 +143,19 @@ class Product(models.Model):
         return self.product_name
 
 
+class ProductColors(models.Model):
+    """ProductColors to be used for products"""
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    color = models.CharField(max_length=64)
+    image_front = models.ImageField(upload_to=product_image_file_path)
+    image_back = models.ImageField(upload_to=product_image_file_path)
+    image_side_left = models.ImageField(upload_to=product_image_file_path)
+    image_side_right = models.ImageField(upload_to=product_image_file_path)
+
+    def __str__(self):
+        return self.color
+
+
 class Shipper(models.Model):
     """Shipper to transfer product to the customer"""
     user = models.OneToOneField(
