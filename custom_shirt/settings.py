@@ -28,13 +28,14 @@ SECRET_KEY = 'ox4+-hj1@&r&e4$t@1)%i@)v#co1nru9#7y8_5=7fapo^#%$bl'
 DEBUG = True
 
 # ALLOWED_HOSTS = ["185.231.115.158", "127.0.0.1"]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 # CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-)
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:3000',
+#     'http://192.168.182.70:3000'
+# )
 
 CORS_ALLOW_HEADERS = [
     'x-auth-token',
