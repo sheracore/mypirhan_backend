@@ -29,12 +29,6 @@ class SupplierViewSet(viewsets.GenericViewSet,
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
 
-    # def get_queryset(self):
-    #     """Return objects for the current authenticated user only"""
-    #     return self.queryset.filter(
-    #         user=self.request.user
-    #     ).order_by('-company_name')
-
     def perform_create(self, serializer):
         """Create a new supplier"""
         # Set the user to the authenticated user
